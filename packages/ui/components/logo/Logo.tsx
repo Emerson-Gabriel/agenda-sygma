@@ -21,7 +21,7 @@ export default function Logo({
             className={classNames(small ? "h-4 w-auto" : "h-5 w-auto", "")}
             alt="Cal"
             title="Cal"
-            src="/api/logo"
+            src="/logo.png"
           />
         )}
       </strong>
