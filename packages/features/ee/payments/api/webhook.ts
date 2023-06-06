@@ -82,15 +82,15 @@ async function getBooking(bookingId: number) {
 
   if (!user) throw new HttpCode({ statusCode: 204, message: "No user found" });
 
-  const t = await getTranslation(user.locale ?? "en", "common");
+  const t = await getTranslation(user.locale ?? "pt-BR", "common");
   const attendeesListPromises = booking.attendees.map(async (attendee) => {
     return {
       name: attendee.name,
       email: attendee.email,
       timeZone: attendee.timeZone,
       language: {
-        translate: await getTranslation(attendee.locale ?? "en", "common"),
-        locale: attendee.locale ?? "en",
+        translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+        locale: attendee.locale ?? "pt-BR",
       },
     };
   });
@@ -108,7 +108,7 @@ async function getBooking(bookingId: number) {
       email: user.email,
       name: user.name!,
       timeZone: user.timeZone,
-      language: { translate: t, locale: user.locale ?? "en" },
+      language: { translate: t, locale: user.locale ?? "pt-BR" },
       id: user.id,
     },
     attendees: attendeesList,
@@ -186,15 +186,15 @@ async function handlePaymentSuccess(event: Stripe.Event) {
 
   const { credentials, ...user } = userWithCredentials;
 
-  const t = await getTranslation(user.locale ?? "en", "common");
+  const t = await getTranslation(user.locale ?? "pt-BR", "common");
   const attendeesListPromises = booking.attendees.map(async (attendee) => {
     return {
       name: attendee.name,
       email: attendee.email,
       timeZone: attendee.timeZone,
       language: {
-        translate: await getTranslation(attendee.locale ?? "en", "common"),
-        locale: attendee.locale ?? "en",
+        translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+        locale: attendee.locale ?? "pt-BR",
       },
     };
   });
@@ -216,7 +216,7 @@ async function handlePaymentSuccess(event: Stripe.Event) {
       email: user.email,
       name: user.name!,
       timeZone: user.timeZone,
-      language: { translate: t, locale: user.locale ?? "en" },
+      language: { translate: t, locale: user.locale ?? "pt-BR" },
     },
     attendees: attendeesList,
     location: booking.location,

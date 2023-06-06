@@ -160,7 +160,7 @@ export const confirmHandler = async ({ ctx, input }: ConfirmOptions) => {
       name: user.name || "Unnamed",
       username: user.username || undefined,
       timeZone: user.timeZone,
-      language: { translate: tOrganizer, locale: user.locale ?? "en" },
+      language: { translate: tOrganizer, locale: user.locale ?? "pt-BR" },
     },
     attendees: attendeesList,
     location: booking.location ?? "",

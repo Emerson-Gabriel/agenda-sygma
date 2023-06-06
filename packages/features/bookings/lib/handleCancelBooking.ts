@@ -150,8 +150,8 @@ async function handler(req: CustomRequest) {
       email: attendee.email,
       timeZone: attendee.timeZone,
       language: {
-        translate: await getTranslation(attendee.locale ?? "en", "common"),
-        locale: attendee.locale ?? "en",
+        translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+        locale: attendee.locale ?? "pt-BR",
       },
     };
 
@@ -172,7 +172,7 @@ async function handler(req: CustomRequest) {
 
   const attendeesList = await Promise.all(attendeesListPromises);
   const teamMembers = await Promise.all(teamMembersPromises);
-  const tOrganizer = await getTranslation(organizer.locale ?? "en", "common");
+  const tOrganizer = await getTranslation(organizer.locale ?? "pt-BR", "common");
 
   const evt: CalendarEvent = {
     title: bookingToDelete?.title,
@@ -189,7 +189,7 @@ async function handler(req: CustomRequest) {
       email: organizer.email,
       name: organizer.name ?? "Nameless",
       timeZone: organizer.timeZone,
-      language: { translate: tOrganizer, locale: organizer.locale ?? "en" },
+      language: { translate: tOrganizer, locale: organizer.locale ?? "pt-BR" },
     },
     attendees: attendeesList,
     uid: bookingToDelete?.uid,
@@ -290,11 +290,11 @@ async function handler(req: CustomRequest) {
       }
     });
 
-    const tAttendees = await getTranslation(attendee.locale ?? "en", "common");
+    const tAttendees = await getTranslation(attendee.locale ?? "pt-BR", "common");
 
     await sendCancelledSeatEmails(evt, {
       ...attendee,
-      language: { translate: tAttendees, locale: attendee.locale ?? "en" },
+      language: { translate: tAttendees, locale: attendee.locale ?? "pt-BR" },
     });
 
     req.statusCode = 200;
@@ -535,7 +535,7 @@ async function handler(req: CustomRequest) {
         email: bookingToDelete.user?.email ?? "dev@calendso.com",
         name: bookingToDelete.user?.name ?? "no user",
         timeZone: bookingToDelete.user?.timeZone ?? "",
-        language: { translate: tOrganizer, locale: organizer.locale ?? "en" },
+        language: { translate: tOrganizer, locale: organizer.locale ?? "pt-BR" },
       },
       attendees: attendeesList,
       location: bookingToDelete.location ?? "",

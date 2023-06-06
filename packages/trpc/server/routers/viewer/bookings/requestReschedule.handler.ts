@@ -140,7 +140,7 @@ export const requestRescheduleHandler = async ({ ctx, input }: RequestReschedule
 
     const [mainAttendee] = bookingToReschedule.attendees;
     // @NOTE: Should we assume attendees language?
-    const tAttendees = await getTranslation(mainAttendee.locale ?? "en", "common");
+    const tAttendees = await getTranslation(mainAttendee.locale ?? "pt-BR", "common");
     const usersToPeopleType = (
       users: PersonAttendeeCommonFields[],
       selectedLanguage: TFunction
@@ -150,13 +150,13 @@ export const requestRescheduleHandler = async ({ ctx, input }: RequestReschedule
           email: user.email || "",
           name: user.name || "",
           username: user?.username || "",
-          language: { translate: selectedLanguage, locale: user.locale || "en" },
+          language: { translate: selectedLanguage, locale: user.locale || "pt-BR" },
           timeZone: user?.timeZone,
         };
       });
     };
 
-    const userTranslation = await getTranslation(user.locale ?? "en", "common");
+    const userTranslation = await getTranslation(user.locale ?? "pt-BR", "common");
     const [userAsPeopleType] = usersToPeopleType([user], userTranslation);
 
     const builder = new CalendarEventBuilder();

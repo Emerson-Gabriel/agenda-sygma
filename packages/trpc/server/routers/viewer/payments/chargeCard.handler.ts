@@ -41,7 +41,7 @@ export const chargeCardHandler = async ({ ctx, input }: ChargeCardHandlerOptions
     });
   }
 
-  const tOrganizer = await getTranslation(booking.user?.locale ?? "en", "common");
+  const tOrganizer = await getTranslation(booking.user?.locale ?? "pt-BR", "common");
 
   const attendeesListPromises = [];
 
@@ -51,8 +51,8 @@ export const chargeCardHandler = async ({ ctx, input }: ChargeCardHandlerOptions
       email: attendee.email,
       timeZone: attendee.timeZone,
       language: {
-        translate: await getTranslation(attendee.locale ?? "en", "common"),
-        locale: attendee.locale ?? "en",
+        translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+        locale: attendee.locale ?? "pt-BR",
       },
     };
 

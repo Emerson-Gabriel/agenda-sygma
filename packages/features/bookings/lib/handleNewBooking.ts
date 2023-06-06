@@ -609,8 +609,8 @@ async function handler(
     eventType,
   });
 
-  const tAttendees = await getTranslation(language ?? "en", "common");
-  const tGuests = await getTranslation("en", "common");
+  const tAttendees = await getTranslation(language ?? "pt-BR", "common");
+  const tGuests = await getTranslation("pt-BR", "common");
   log.debug(`Booking eventType ${eventTypeId} started`);
   const dynamicUserList = Array.isArray(reqBody.user)
     ? getGroupName(reqBody.user)
@@ -798,7 +798,7 @@ async function handler(
   await handleEthSignature(rainbowAppData, reqBody.ethSignature);
 
   const [organizerUser] = users;
-  const tOrganizer = await getTranslation(organizerUser?.locale ?? "en", "common");
+  const tOrganizer = await getTranslation(organizerUser?.locale ?? "pt-BR", "common");
   // use host default
   if (isTeamEventType && locationBodyString === "conferencing") {
     const metadataParseResult = userMetadataSchema.safeParse(organizerUser.metadata);
@@ -817,7 +817,7 @@ async function handler(
       email: bookerEmail,
       name: bookerName,
       timeZone: reqBody.timeZone,
-      language: { translate: tAttendees, locale: language ?? "en" },
+      language: { translate: tAttendees, locale: language ?? "pt-BR" },
     },
   ];
 
@@ -830,7 +830,7 @@ async function handler(
       email: guest,
       name: "",
       timeZone: reqBody.timeZone,
-      language: { translate: tGuests, locale: "en" },
+      language: { translate: tGuests, locale: "pt-BR" },
     });
     return guestArray;
   }, [] as typeof invitee);
@@ -849,8 +849,8 @@ async function handler(
             name: user.name || "",
             timeZone: user.timeZone,
             language: {
-              translate: await getTranslation(user.locale ?? "en", "common"),
-              locale: user.locale ?? "en",
+              translate: await getTranslation(user.locale ?? "pt-BR", "common"),
+              locale: user.locale ?? "pt-BR",
             },
           };
         })
@@ -899,7 +899,7 @@ async function handler(
       email: organizerUser.email || "Email-less",
       username: organizerUser.username || undefined,
       timeZone: organizerUser.timeZone,
-      language: { translate: tOrganizer, locale: organizerUser.locale ?? "en" },
+      language: { translate: tOrganizer, locale: organizerUser.locale ?? "pt-BR" },
       timeFormat: organizerUser.timeFormat === 24 ? TimeFormat.TWENTY_FOUR_HOUR : TimeFormat.TWELVE_HOUR,
     },
     responses: "calEventResponses" in reqBody ? reqBody.calEventResponses : null,
@@ -1090,7 +1090,7 @@ async function handler(
             name: attendee.name,
             email: attendee.email,
             timeZone: attendee.timeZone,
-            language: { translate: tAttendees, locale: attendee.locale ?? "en" },
+            language: { translate: tAttendees, locale: attendee.locale ?? "pt-BR" },
           });
           return filteredAttendees;
         },
@@ -1132,7 +1132,7 @@ async function handler(
             name: attendee.name,
             email: attendee.email,
             timeZone: attendee.timeZone,
-            language: { translate: tAttendees, locale: attendee.locale ?? "en" },
+            language: { translate: tAttendees, locale: attendee.locale ?? "pt-BR" },
           };
         });
 
@@ -1291,7 +1291,7 @@ async function handler(
           const updatedBookingAttendees = updatedNewBooking.attendees.map((attendee) => {
             const evtAttendee = {
               ...attendee,
-              language: { translate: tAttendees, locale: language ?? "en" },
+              language: { translate: tAttendees, locale: language ?? "pt-BR" },
             };
             return evtAttendee;
           });
@@ -1342,7 +1342,7 @@ async function handler(
       // seatAttendee is null when the organizer is rescheduling.
       const seatAttendee: Partial<Person> | null = bookingSeat?.attendee || null;
       if (seatAttendee) {
-        seatAttendee["language"] = { translate: tAttendees, locale: bookingSeat?.attendee.locale ?? "en" };
+        seatAttendee["language"] = { translate: tAttendees, locale: bookingSeat?.attendee.locale ?? "pt-BR" };
       }
       // If there is no booking then remove the attendee from the old booking and create a new one
       if (!newTimeSlotBooking) {
@@ -1422,7 +1422,7 @@ async function handler(
     } else {
       // Need to add translation for attendees to pass type checks. Since these values are never written to the db we can just use the new attendee language
       const bookingAttendees = booking.attendees.map((attendee) => {
-        return { ...attendee, language: { translate: tAttendees, locale: language ?? "en" } };
+        return { ...attendee, language: { translate: tAttendees, locale: language ?? "pt-BR" } };
       });
 
       evt = { ...evt, attendees: [...bookingAttendees, invitee[0]] };

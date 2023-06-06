@@ -265,14 +265,14 @@ export const deleteCredentialHandler = async ({ ctx, input }: DeleteCredentialOp
                 email: attendee.email,
                 timeZone: attendee.timeZone,
                 language: {
-                  translate: await getTranslation(attendee.locale ?? "en", "common"),
-                  locale: attendee.locale ?? "en",
+                  translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+                  locale: attendee.locale ?? "pt-BR",
                 },
               };
             });
 
             const attendeesList = await Promise.all(attendeesListPromises);
-            const tOrganizer = await getTranslation(booking?.user?.locale ?? "en", "common");
+            const tOrganizer = await getTranslation(booking?.user?.locale ?? "pt-BR", "common");
             await sendCancelledEmails({
               type: booking?.eventType?.title as string,
               title: booking.title,
@@ -288,7 +288,7 @@ export const deleteCredentialHandler = async ({ ctx, input }: DeleteCredentialOp
                 email: booking?.user?.email as string,
                 name: booking?.user?.name ?? "Nameless",
                 timeZone: booking?.user?.timeZone as string,
-                language: { translate: tOrganizer, locale: booking?.user?.locale ?? "en" },
+                language: { translate: tOrganizer, locale: booking?.user?.locale ?? "pt-BR" },
               },
               attendees: attendeesList,
               uid: booking.uid,

@@ -44,7 +44,7 @@ export const paymentsRouter = router({
         });
       }
 
-      const tOrganizer = await getTranslation(booking.user?.locale ?? "en", "common");
+      const tOrganizer = await getTranslation(booking.user?.locale ?? "pt-BR", "common");
 
       const attendeesListPromises = [];
 
@@ -54,8 +54,8 @@ export const paymentsRouter = router({
           email: attendee.email,
           timeZone: attendee.timeZone,
           language: {
-            translate: await getTranslation(attendee.locale ?? "en", "common"),
-            locale: attendee.locale ?? "en",
+            translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+            locale: attendee.locale ?? "pt-BR",
           },
         };
 
@@ -73,7 +73,7 @@ export const paymentsRouter = router({
           email: booking.user?.email || "",
           name: booking.user?.name || "Nameless",
           timeZone: booking.user?.timeZone || "",
-          language: { translate: tOrganizer, locale: booking.user?.locale ?? "en" },
+          language: { translate: tOrganizer, locale: booking.user?.locale ?? "pt-BR" },
         },
         attendees: attendeesList,
         paymentInfo: {

@@ -106,7 +106,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       });
     }
 
-    const t = await getTranslation(booking?.user?.locale ?? "en", "common");
+    const t = await getTranslation(booking?.user?.locale ?? "pt-BR", "common");
     const attendeesListPromises = booking.attendees.map(async (attendee) => {
       return {
         id: attendee.id,
@@ -114,8 +114,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         email: attendee.email,
         timeZone: attendee.timeZone,
         language: {
-          translate: await getTranslation(attendee.locale ?? "en", "common"),
-          locale: attendee.locale ?? "en",
+          translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+          locale: attendee.locale ?? "pt-BR",
         },
       };
     });
@@ -155,7 +155,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         email: booking.user?.email || "Email-less",
         name: booking.user?.name || "Nameless",
         timeZone: booking.user?.timeZone || "Europe/London",
-        language: { translate: t, locale: booking?.user?.locale ?? "en" },
+        language: { translate: t, locale: booking?.user?.locale ?? "pt-BR" },
       },
       attendees: attendeesList,
       uid: booking.uid,

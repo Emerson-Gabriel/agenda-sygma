@@ -78,7 +78,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         continue;
       }
 
-      const tOrganizer = await getTranslation(user.locale ?? "en", "common");
+      const tOrganizer = await getTranslation(user.locale ?? "pt-BR", "common");
 
       const attendeesListPromises = booking.attendees.map(async (attendee) => {
         return {
@@ -86,8 +86,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           email: attendee.email,
           timeZone: attendee.timeZone,
           language: {
-            translate: await getTranslation(attendee.locale ?? "en", "common"),
-            locale: attendee.locale ?? "en",
+            translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+            locale: attendee.locale ?? "pt-BR",
           },
         };
       });
@@ -111,7 +111,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           email: user.email,
           name,
           timeZone: user.timeZone,
-          language: { translate: tOrganizer, locale: user.locale ?? "en" },
+          language: { translate: tOrganizer, locale: user.locale ?? "pt-BR" },
         },
         attendees: attendeesList,
         uid: booking.uid,

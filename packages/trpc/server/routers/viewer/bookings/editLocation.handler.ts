@@ -37,7 +37,7 @@ export const editLocationHandler = async ({ ctx, input }: EditLocationOptions) =
       },
     });
 
-    const tOrganizer = await getTranslation(organizer.locale ?? "en", "common");
+    const tOrganizer = await getTranslation(organizer.locale ?? "pt-BR", "common");
 
     const attendeesListPromises = booking.attendees.map(async (attendee) => {
       return {
@@ -45,8 +45,8 @@ export const editLocationHandler = async ({ ctx, input }: EditLocationOptions) =
         email: attendee.email,
         timeZone: attendee.timeZone,
         language: {
-          translate: await getTranslation(attendee.locale ?? "en", "common"),
-          locale: attendee.locale ?? "en",
+          translate: await getTranslation(attendee.locale ?? "pt-BR", "common"),
+          locale: attendee.locale ?? "pt-BR",
         },
       };
     });
@@ -63,7 +63,7 @@ export const editLocationHandler = async ({ ctx, input }: EditLocationOptions) =
         email: organizer.email,
         name: organizer.name ?? "Nameless",
         timeZone: organizer.timeZone,
-        language: { translate: tOrganizer, locale: organizer.locale ?? "en" },
+        language: { translate: tOrganizer, locale: organizer.locale ?? "pt-BR" },
       },
       attendees: attendeesList,
       uid: booking.uid,
